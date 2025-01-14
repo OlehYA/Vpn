@@ -82,10 +82,30 @@
 
 
             <StackPanel>
-                
+
+                <RadioButton Content="VPN"
+                                 FontSize="16"
+                                 FontWeight="Normal"
+                                 Foreground="LightGray"
+                                 IsChecked="True"/>
+
+                <RadioButton Content="VPN"
+                                 FontSize="16"
+                                 FontWeight="Normal"
+                                 Foreground="LightGray"
+                                 IsChecked="True"/>
+
+                <RadioButton Content="VPN"
+                                 FontSize="16"
+                                 FontWeight="Normal"
+                                 Foreground="LightGray"
+                                 IsChecked="True"/>
+
             </StackPanel>
 
         </Border>
-        
+
+        <ContentPresenter/>
+
     </DockPanel>
 </Window>
