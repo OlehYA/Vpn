@@ -10,8 +10,9 @@
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/TitileButtonNord.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            
             <DataTemplate DataType="{x:Type vms:ProtectionViewModel}">
                 <view:ProtectionView/>
             </DataTemplate>
