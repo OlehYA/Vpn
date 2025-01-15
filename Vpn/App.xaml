@@ -12,6 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/TitileButtonNord.xaml"/>
                 <ResourceDictionary Source="/Themes/MenuBuutonNord.xaml"/>
+                <ResourceDictionary Source="/Themes/ConnectButtonNord.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             
             <DataTemplate DataType="{x:Type vms:ProtectionViewModel}">
