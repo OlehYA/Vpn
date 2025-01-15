@@ -119,7 +119,7 @@
 
         </Border>
 
-        <ContentPresenter/>
+        <ContentPresenter Content="{Binding CurrentView}"/>
 
     </DockPanel>
 </Window>

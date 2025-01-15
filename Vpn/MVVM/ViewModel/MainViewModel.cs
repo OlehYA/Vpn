@@ -30,8 +30,14 @@ namespace Vpn.MVVM.ViewModel
             }
         }
 
+        public ProtectionViewModel ProtectionVM { get; set; }
+
         public MainViewModel()
         {
+            ProtectionVM = new ProtectionViewModel();
+            CurrentView = ProtectionVM;
+
+
             Application.Current.MainWindow.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
             MoveWindowCommand = new RelayCommand(o => { Application.Current.MainWindow.DragMove(); });
