@@ -11,6 +11,8 @@ namespace Vpn.MVVM.ViewModel
     {
         public ObservableCollection<ServerModel> Servers { get; set; }
 
+        public string ConnectionStatus { get; set; }
+
         public ProtectionViewModel() 
         {
             Servers= new ObservableCollection<ServerModel>();
