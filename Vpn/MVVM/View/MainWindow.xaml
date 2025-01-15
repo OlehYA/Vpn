@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Vpn" xmlns:viewmodel="clr-namespace:Vpn.MVVM.ViewModel"
+        xmlns:local="clr-namespace:Vpn" 
+        xmlns:extensions="clr-namespace:Vpn.Core" 
+        xmlns:viewmodel="clr-namespace:Vpn.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
@@ -48,10 +50,13 @@
                             Margin="0,4,0,0">
 
                     <Button Content="-"
+                            Padding="0,0,0,2"
                             Command="{Binding MinimaizemWindowsCommand}"/>
                     <Button Content="::"
+                            Padding="0,0,0,2"
                             Command="{Binding MaximizeWIndowCommand}"/>
                     <Button Content="X"
+                            Padding="0,0,0,2"
                             Command="{Binding ShutdownWindowsCommand}"/>
                 </StackPanel>
                 
@@ -98,7 +103,9 @@
             <StackPanel>
 
                 <RadioButton Content="VPN"
+                                 
                                  FontSize="16"
+                                 Padding="7.6, 3.5, 8,0"
                                  FontWeight="Normal"
                                  Foreground="LightGray"
                                  IsChecked="True"
