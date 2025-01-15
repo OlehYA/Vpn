@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Vpn"
+        xmlns:local="clr-namespace:Vpn" xmlns:viewmodel="clr-namespace:Vpn.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="450" 
@@ -12,11 +12,22 @@
         Background="Transparent"
         AllowsTransparency="True"
         ResizeMode="CanResize">
+
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+    
     <DockPanel Background="#1E1E1E"
                Margin="7">
+        
         <Border Height="28"
                 Background="#252525"
                 DockPanel.Dock="Top">
+
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding MoveWindowCommand}"/>
+            </Border.InputBindings>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -36,9 +47,12 @@
                             HorizontalAlignment="Right"
                             Margin="0,4,0,0">
 
-                    <Button Content="-"/>
-                    <Button Content="::"/>
-                    <Button Content="X"/>
+                    <Button Content="-"
+                            Command="{Binding MinimaizemWindowsCommand}"/>
+                    <Button Content="::"
+                            Command="{Binding MaximizeWIndowCommand}"/>
+                    <Button Content="X"
+                            Command="{Binding ShutdownWindowsCommand}"/>
                 </StackPanel>
                 
             </Grid>
