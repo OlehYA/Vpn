@@ -16,6 +16,10 @@
                 <view:ProtectionView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type vms:SettingsViewModel}">
+                <view:SettingView/>
+            </DataTemplate>
+
         </ResourceDictionary>
         
     </Application.Resources>

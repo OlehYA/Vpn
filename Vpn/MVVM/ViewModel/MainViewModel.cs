@@ -18,6 +18,11 @@ namespace Vpn.MVVM.ViewModel
 
         public RelayCommand MinimaizemWindowsCommand { get; set; }
 
+
+        public RelayCommand ShowProtectionView { get; set; }
+
+        public RelayCommand ShowSettingsView { get; set; }
+
         private object _currentView;
 
         public object CurrentView 
@@ -32,9 +37,12 @@ namespace Vpn.MVVM.ViewModel
 
         public ProtectionViewModel ProtectionVM { get; set; }
 
+        public SettingsViewModel SettingsVM { get; set; }
+
         public MainViewModel()
         {
             ProtectionVM = new ProtectionViewModel();
+            SettingsVM = new SettingsViewModel();
             CurrentView = ProtectionVM;
 
 
@@ -50,6 +58,9 @@ namespace Vpn.MVVM.ViewModel
                     Application.Current.MainWindow.WindowState= WindowState.Maximized;
             });
             MinimaizemWindowsCommand = new RelayCommand(o => { Application.Current.MainWindow.WindowState = WindowState.Minimized; });
+
+            ShowProtectionView = new RelayCommand(o => { CurrentView= ProtectionVM; });
+            ShowSettingsView = new RelayCommand(o=> { CurrentView= SettingsVM; });
         }
     }
 }
