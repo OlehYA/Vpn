@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace Vpn.MVVM.ViewModel
     internal class ProtectionViewModel : ObservableObject
     {
         public ObservableCollection<ServerModel> Servers { get; set; }
+
+        public GlobalViewModel Global { get; } = GlobalViewModel.Instance;
 
         private string _connectionStatus;
 
@@ -39,13 +42,44 @@ namespace Vpn.MVVM.ViewModel
 
             }
 
-            ConnectCommand = new RelayCommand(o => { ConnectionStatus = "Connection..";});
-            ServerBuilder();
+            ConnectCommand = new RelayCommand(o =>
+            {
+                Task.Run(() => 
+                {
+                    ConnectionStatus = "Connection..";
+                    var process = new Process();
+                    process.StartInfo.FileName = "cmd.exe";
+                    process.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
+                    process.StartInfo.ArgumentList.Add(@"/d rasdial MyServer vpnbook hu86c9k / phonebook:.КнигaС#\MyProject\Vpn\Vpn\bin\Debug\net6.0-windows\VPN\VPN.pbk");
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.CreateNoWindow = true;
+
+
+                    process.Start();
+                    process.WaitForExit();
+
+                    switch (process.ExitCode)
+                    {
+                        case 0:
+                            Debug.WriteLine("Success!");
+                            ConnectionStatus = "Connected!";
+                            break;
+                        case 691:
+                            Debug.WriteLine("Wrong credentials!");
+                            ConnectionStatus = "Connectid!";
+                            break;
+                        default:
+                            Debug.WriteLine($"Error: {process.ExitCode}");
+                            break;
+                    }
+                });
+
+            });
         }
 
         private void ServerBuilder()
         {
-            var address = "";
+            var address = "us1.vpnbook.com";
             var FolderPath = $"{Directory.GetCurrentDirectory()}/VPN";
             var PbkPath = $"{FolderPath}/{address}.pbk";
 
@@ -60,7 +94,7 @@ namespace Vpn.MVVM.ViewModel
 
             var sb = new StringBuilder();
             sb.AppendLine("[MyServer]");
-            sb.AppendLine("MEDIA=rastap");
+            sb.AppendLine("MEDIA=rastapi");
             sb.AppendLine("Port=VPN2-0");
             sb.AppendLine("Device=WAN Miniport (IKEv2)");
             sb.AppendLine("DEVICE=vpn");
